@@ -1,6 +1,7 @@
 package com.aldincimpo;
 
 public class Choice {
+  //Eigenschaften
     public String txt;
     public boolean ok;
 

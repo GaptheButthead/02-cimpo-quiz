@@ -56,17 +56,17 @@ public class Question {
 
         for (int i = 0; i < answer.length(); i++) {
             if(digit.contains(answer.charAt(i) + "")){
-                answerHasDigits = false;
+                answerHasDigits = true;
                 break;
             }
         }
 
-        if(answerHasDigits == false){
+        if(!answerHasDigits){
             throw new IllegalArgumentException("Nur Zahlen dürfen enthalten sein!");
         }
         for (int i = 0; i < answer.length(); i++) {
             if(digit.contains(answer.charAt(i) + "")){
-                if(!choices.get(Integer.parseInt(answer.charAt(i) + "")).ok){
+                if(!choices.get(Integer.parseInt(answer.charAt(i) + "") -1).ok){
                     correctAnswer = false;
                 }
             }
@@ -76,7 +76,7 @@ public class Question {
 
 
     public void showCorrectAnswer(){
-        System.out.println("Richtige Antworten: ");
+        System.out.println("Richtige Antwort: ");
 
         for (Choice choice :
                 choices) {

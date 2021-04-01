@@ -9,22 +9,27 @@ public class Main {
     public static void main(String[] args) {
 
 
+        //Question Pool ArrayList erzeugen
         ArrayList<Question> QuestionPool = setupQuestionPool();
 
+        //BeispielText einfügen aus Angabe
         System.out.println("Quiz mit 3 Fragen");
-        System.out.println("Geben  Sie  die  zutreffende  Antwort  als  Zahlen." +
-                " Wenn  mehrere  Antworten  zutreffen , geben Sie" +
-                "  bitte  alle  Antworten  in  einer  Zeile  an und" +
+        System.out.println("Geben  Sie  die  zutreffende  Antwort  als  Zahlen." + "\n" +
+                " Wenn  mehrere  Antworten  zutreffen , geben Sie" + "\n" +
+                "  bitte  alle  Antworten  in  einer  Zeile  an und" + "\n" +
                 "  trennen  diese  durch  Leerzeichen ,z.B.'2 4'.");
         System.out.println();
 
+
+        //neue Random Variable plus scanner deklarieren und init.
         var r = new Random();
         var scanner = new Scanner(System.in);
         int question;
         String answer;
-        int correctAnswerCounter=0;
-        int i = 1;
+        int correctAnswerCounter =0;
 
+        //Solange i<=3 Fragen, soll folgendes ausgeführt werden:
+        int i = 1;
         while(i<=3){
 
             question = r.nextInt(QuestionPool.size());
@@ -32,21 +37,28 @@ public class Main {
             //Frage mit Antwortmöglichkeiten
             QuestionPool.get(question).show();
             System.out.print("Ihre Antwort: " );;
+            //Antwort wird gescannt und in einer Variable gespeichert
             answer = scanner.nextLine();
+
+            //Wenn Korrekte Antwort, dann erhöhe correct Answer Counter um 1
             if(QuestionPool.get(question).analyzeAnswer(answer)){
                 System.out.println("Korrekte Antwort, sehr gut!");
                 correctAnswerCounter++;
             }else{
                 System.out.println("Falsch!");
 
+                //Zeigen der korrekten Antwort
                 QuestionPool.get(question).showCorrectAnswer();
             }
             i++;
-
+            QuestionPool.remove(question);
         }
+        //Finale Ausgabe mit Ergebnis
+        System.out.println("Sie haben " + correctAnswerCounter + "  von 3 Fragen richtig beantwortet");
     }
 
 
+//Beispiel Text einfügen aus Angabe
     public static ArrayList<Question> setupQuestionPool() {
         var pool = new ArrayList<Question>();
 
