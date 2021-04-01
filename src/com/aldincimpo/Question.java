@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Question {
 
-//Eigenschaften
+    //Eigenschaften
     public String txt;
     public ArrayList<Choice> choices;
 
-//Konstruktor
+    //Konstruktor
     public Question(String txt ) {
         this.txt = txt;
 
@@ -44,19 +44,31 @@ public class Question {
         int i = 1;
         for (Choice choice :
                 choices) {
-            System.out.println("(" + i + ")" + this.choices);
+            System.out.println("(" + i + ") " + choice.txt);
             i++;
         }
     }
     public boolean analyzeAnswer(String answer){
         String digit = "123456789";
         boolean correctAnswer = true;
+        boolean answerHasDigits = false;
+
 
         for (int i = 0; i < answer.length(); i++) {
             if(digit.contains(answer.charAt(i) + "")){
-              if(!choices.get(answer.charAt(i)).ok){
+                answerHasDigits = false;
+                break;
+            }
+        }
+
+        if(answerHasDigits == false){
+            throw new IllegalArgumentException("Nur Zahlen dürfen enthalten sein!");
+        }
+        for (int i = 0; i < answer.length(); i++) {
+            if(digit.contains(answer.charAt(i) + "")){
+                if(!choices.get(Integer.parseInt(answer.charAt(i) + "")).ok){
                     correctAnswer = false;
-              }
+                }
             }
         }
         return correctAnswer;
