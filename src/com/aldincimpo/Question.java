@@ -63,6 +63,16 @@ public class Question {
     }
 
 
+    public void showCorrectAnswer(){
+        System.out.println("Richtige Antworten: ");
 
+        for (Choice choice :
+                choices) {
+            if(choice.ok == true) {
+                System.out.println(choice.txt);
+            }
+        }
+
+    }
 
 }

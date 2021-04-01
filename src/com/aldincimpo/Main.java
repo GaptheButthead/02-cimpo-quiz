@@ -2,10 +2,15 @@ package com.aldincimpo;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+
+
+        ArrayList<Question> QuestionPool = setupQuestionPool();
+
         System.out.println("Quiz mit 3 Fragen");
         System.out.println("Geben  Sie  die  zutreffende  Antwort  als  Zahlen." +
                 " Wenn  mehrere  Antworten  zutreffen , geben Sie" +
@@ -14,6 +19,31 @@ public class Main {
         System.out.println();
 
         var r = new Random();
+        var scanner = new Scanner(System.in);
+        int question;
+        String answer;
+        int correctAnswerCounter=0;
+        int i = 1;
+
+        while(i<=3){
+
+            question = r.nextInt(QuestionPool.size());
+
+            //Frage mit Antwortmöglichkeiten
+            QuestionPool.get(question).show();
+            System.out.print("Ihre Antwort: " );;
+            answer = scanner.nextLine();
+            if(QuestionPool.get(question).analyzeAnswer(answer)){
+                System.out.println("Korrekte Antwort, sehr gut!");
+                correctAnswerCounter++;
+            }else{
+                System.out.println("Falsch!");
+
+                QuestionPool.get(question).showCorrectAnswer();
+            }
+            i++;
+
+        }
     }
 
 
