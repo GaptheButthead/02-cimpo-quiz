@@ -54,7 +54,7 @@ public class Question {
 
         for (int i = 0; i < answer.length(); i++) {
             if(digit.contains(answer.charAt(i) + "")){
-              if(choices.get((int)answer.charAt(i)).ok == false){
+              if(!choices.get(answer.charAt(i)).ok){
                     correctAnswer = false;
               }
             }
