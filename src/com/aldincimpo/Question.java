@@ -41,14 +41,15 @@ public class Question {
         System.out.println(this.txt);
         System.out.println();
 
-        int i = 1;
+
         for (Choice choice :
                 choices) {
-            System.out.println("(" + i + ") " + choice.txt);
-            i++;
+            System.out.println("(" + (choices.indexOf(choice) + 1) + ") " + choice.txt);
+
         }
     }
     public boolean analyzeAnswer(String answer){
+        //Zahlen Pool anlegen
         String digit = "123456789";
         boolean correctAnswer = true;
         boolean answerHasDigits = false;
@@ -64,13 +65,29 @@ public class Question {
         if(!answerHasDigits){
             throw new IllegalArgumentException("Nur Zahlen dürfen enthalten sein!");
         }
+        //Schleife über Antwort Zeichen
         for (int i = 0; i < answer.length(); i++) {
+
+            //Wenn Ziffer enthalten ist
             if(digit.contains(answer.charAt(i) + "")){
-                if(!choices.get(Integer.parseInt(answer.charAt(i) + "") -1).ok){
+
+                //und die Ziffer im gültigen Antwortbereich liegt
+                if(Integer.parseInt(answer.charAt(i)+"")-1 <= choices.size()-1){
+
+                    // und die Antwort falsch ist wird der return auch insgesamt falsch
+                    if(!choices.get(Integer.parseInt(answer.charAt(i) + "") -1).ok){
+                        correctAnswer = false;
+                    }
+
+                }else{
+                    // Zahl größer als möglichen Antworten
                     correctAnswer = false;
+                    // alternativ
+                    // throw new IllegalArgumentException("Antwort nicht möglich, eingegebene Zahl ist zu hoch");
                 }
             }
         }
+        //Zurückbringen
         return correctAnswer;
     }
 
@@ -81,7 +98,7 @@ public class Question {
         for (Choice choice :
                 choices) {
             if(choice.ok == true) {
-                System.out.println(choice.txt);
+                System.out.println("(" + (choices.indexOf(choice) + 1) + ") " + choice.txt);
             }
         }
 

@@ -54,7 +54,7 @@ public class Main {
             QuestionPool.remove(question);
         }
         //Finale Ausgabe mit Ergebnis
-        System.out.println("Sie haben " + correctAnswerCounter + "  von 3 Fragen richtig beantwortet");
+        System.out.println("Sie haben " + correctAnswerCounter + " von 3 Fragen richtig beantwortet");
     }
 
 
@@ -96,6 +96,25 @@ public class Main {
         q.addCorrectChoice("2^4 + 2^3");
         q.addWrongChoice("100 - 12 * 6 - 3 * 3");
         pool.add(q);
+
+
+        q = new Question("Was versteht man unter Cloud Computing?");
+        q.addCorrectChoice("Bereitstellung von IT-Leistungen über das Internet");
+        q.addWrongChoice("Computer die auf einer Wolke schweben");
+        q.addWrongChoice("Lokale Rechner, die gemeinsam für ein Problem arbeiten");
+        q.addWrongChoice("Keiner dieser Antworten");
+
+        q = new Question ("Bitcoin's all time high Wert betrug wie viel?");
+        q.addWrongChoice("20.000");
+        q.addWrongChoice("40.000");
+        q.addWrongChoice("50.000");
+        q.addCorrectChoice("60.000");
+
+        q = new Question("Welcher Streaming Service hat zum ersten Mal 100 Millionen abgesch. Abonements dieses Jahr erreicht?");
+        q.addCorrectChoice("Disney+");
+        q.addWrongChoice("Netflix");
+        q.addWrongChoice("Amazon Prime Video");
+        q.addWrongChoice("Nickelodeon");
 
         // sicherstellen, dass jede Frage mindestens 2 Antworten
         // und mindestens eine richtige Antwort hat

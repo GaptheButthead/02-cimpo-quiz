@@ -1,10 +1,11 @@
 package com.aldincimpo;
 
 public class Choice {
-  //Eigenschaften
+    //Eigenschaften
     public String txt;
     public boolean ok;
 
+    //Konstruktor
     public Choice(String txt, boolean ok) {
         this.txt = txt;
         this.ok = ok;
