@@ -9,9 +9,11 @@ public class Question {
     public ArrayList<Choice> choices;
 
 //Konstruktor
-    public Question(String txt, ArrayList<Choice> choices) {
+    public Question(String txt ) {
         this.txt = txt;
-        this.choices = choices;
+
+        //Neue ArrayList wo die Antworten rein kommen
+        this.choices = new ArrayList<Choice>();
     }
 
     public void addWrongChoice(String txt){
