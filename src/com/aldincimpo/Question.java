@@ -36,9 +36,7 @@ public class Question {
 
 
     public void show(){
-        System.out.println("Quiz mit 3 Fragen");
-        System.out.println("Geben  Sie  die  zutreffende  Antwort  als  Zahlan. Wenn  mehrere  Antworten  zutreffen , gebenSie  bitte  alle  Antworten  in  einer  Zeile  anund  trennen  diese  durch  Leerzeichen ,z.B.'2 4'.");
-        System.out.println();
+
 
         System.out.println(this.txt);
         System.out.println();

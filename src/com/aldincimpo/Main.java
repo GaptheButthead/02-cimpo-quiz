@@ -1,12 +1,19 @@
 package com.aldincimpo;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("Quiz mit 3 Fragen");
+        System.out.println("Geben  Sie  die  zutreffende  Antwort  als  Zahlen." +
+                " Wenn  mehrere  Antworten  zutreffen , geben Sie" +
+                "  bitte  alle  Antworten  in  einer  Zeile  an und" +
+                "  trennen  diese  durch  Leerzeichen ,z.B.'2 4'.");
+        System.out.println();
 
-
+        var r = new Random();
     }
 
 
