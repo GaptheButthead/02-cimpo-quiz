@@ -1,6 +1,7 @@
 package com.aldincimpo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Question {
 
@@ -36,6 +37,8 @@ public class Question {
 
 
     public void show(){
+        //Shufflen der Antworten!
+        Collections.shuffle(choices);
 
 
         System.out.println(this.txt);

@@ -1,8 +1,6 @@
 package com.aldincimpo;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -11,7 +9,6 @@ public class Main {
 
         //Question Pool ArrayList erzeugen
         ArrayList<Question> QuestionPool = setupQuestionPool();
-
         //BeispielText einfügen aus Angabe
         System.out.println("Quiz mit 3 Fragen");
         System.out.println("Geben  Sie  die  zutreffende  Antwort  als  Zahlen." + "\n" +
@@ -55,13 +52,14 @@ public class Main {
         }
         //Finale Ausgabe mit Ergebnis
         System.out.println("Sie haben " + correctAnswerCounter + " von 3 Fragen richtig beantwortet");
+
     }
 
 
 //Beispiel Text einfügen aus Angabe
     public static ArrayList<Question> setupQuestionPool() {
         var pool = new ArrayList<Question>();
-
+        Collections.shuffle(pool);
         var q = new Question("Welches ist der längste Fluss der Erde?");
         q.addCorrectChoice("Nil");
         q.addWrongChoice("Amazonas");
@@ -103,18 +101,24 @@ public class Main {
         q.addWrongChoice("Computer die auf einer Wolke schweben");
         q.addWrongChoice("Lokale Rechner, die gemeinsam für ein Problem arbeiten");
         q.addWrongChoice("Keiner dieser Antworten");
+        pool.add(q);
+
 
         q = new Question ("Bitcoin's all time high Wert betrug wie viel?");
         q.addWrongChoice("20.000");
         q.addWrongChoice("40.000");
         q.addWrongChoice("50.000");
         q.addCorrectChoice("60.000");
+        pool.add(q);
+
 
         q = new Question("Welcher Streaming Service hat zum ersten Mal 100 Millionen abgesch. Abonements dieses Jahr erreicht?");
         q.addCorrectChoice("Disney+");
         q.addWrongChoice("Netflix");
         q.addWrongChoice("Amazon Prime Video");
         q.addWrongChoice("Nickelodeon");
+        pool.add(q);
+
 
         // sicherstellen, dass jede Frage mindestens 2 Antworten
         // und mindestens eine richtige Antwort hat
