@@ -29,6 +29,7 @@ public class Main {
         int i = 1;
         while(i<=3){
 
+            //Fragen werden zufällig durchgemischt
             question = r.nextInt(QuestionPool.size());
 
             //Frage mit Antwortmöglichkeiten
@@ -47,6 +48,8 @@ public class Main {
                 //Zeigen der korrekten Antwort
                 QuestionPool.get(question).showCorrectAnswer();
             }
+            //i++ nach jedem Durchgang und das Entfernen der Frage, damit sie nicht
+            //zwei mal im selben Durchgang vorkommt!
             i++;
             QuestionPool.remove(question);
         }
@@ -56,7 +59,7 @@ public class Main {
     }
 
 
-//Beispiel Text einfügen aus Angabe
+    //Beispiel Text einfügen aus Angabe
     public static ArrayList<Question> setupQuestionPool() {
         var pool = new ArrayList<Question>();
         Collections.shuffle(pool);
@@ -78,7 +81,7 @@ public class Main {
         q.addCorrectChoice("Pie");
         q.addWrongChoice("Nougat");
         q.addWrongChoice("KitKat");
-        q.addWrongChoice("Orea");
+        q.addWrongChoice("Oreo");
         pool.add(q);
 
         q = new Question("Welches ist das flächenmäßig größte Land der Erde?");

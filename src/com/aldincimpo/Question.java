@@ -18,16 +18,20 @@ public class Question {
     }
 
     public void addWrongChoice(String txt){
+        //Korrekte Antwort hinzufügen Methode
         choices.add(new Choice(txt, false));
     }
-
+    //Korrekte Antwort hinzufügen Methode
     public void addCorrectChoice(String txt){
+        //Neues Choice Objekt der Liste hinzufügen
         choices.add(new Choice(txt, true));
     }
 
 
     public void validate(){
+        //for each LESEND über die Antwortmöglichkeiten
         for (Choice choice : choices) {
+            //Wenn weniger als 2 Antwortmöglichkeiten, dann Gegenreaktion!
             if(choices.size() < 2){
                 throw new IllegalArgumentException("Es müssen mind. 2 Antworten da sein.");
             }
@@ -37,14 +41,17 @@ public class Question {
 
 
     public void show(){
-        //Shufflen der Antworten!
-        Collections.shuffle(choices);
+        //Shufflen der Antwortenmöglichkeiten!
+        for (int i = 0; i < 30; i++) {
+            Collections.shuffle(choices);
+        }
+
 
 
         System.out.println(this.txt);
         System.out.println();
 
-
+        //for each LESEND über die Antwortmöglichkeiten
         for (Choice choice :
                 choices) {
             System.out.println("(" + (choices.indexOf(choice) + 1) + ") " + choice.txt);
@@ -52,12 +59,13 @@ public class Question {
         }
     }
     public boolean analyzeAnswer(String answer){
-        //Zahlen Pool anlegen
+        //nötigen Variablen anlegen
         String digit = "123456789";
-        boolean correctAnswer = true;
         boolean answerHasDigits = false;
+        int correctAnswers = 0;
 
 
+        //Schauen ob überhaupt eine Ziffer in der Antwort enthalten ist
         for (int i = 0; i < answer.length(); i++) {
             if(digit.contains(answer.charAt(i) + "")){
                 answerHasDigits = true;
@@ -65,9 +73,11 @@ public class Question {
             }
         }
 
+        //Wenn nicht, dann Gegenreaktion
         if(!answerHasDigits){
             throw new IllegalArgumentException("Nur Zahlen dürfen enthalten sein!");
         }
+
         //Schleife über Antwort Zeichen
         for (int i = 0; i < answer.length(); i++) {
 
@@ -79,27 +89,50 @@ public class Question {
 
                     // und die Antwort falsch ist wird der return auch insgesamt falsch
                     if(!choices.get(Integer.parseInt(answer.charAt(i) + "") -1).ok){
-                        correctAnswer = false;
+                        correctAnswers++;
                     }
 
                 }else{
                     // Zahl größer als möglichen Antworten
-                    correctAnswer = false;
-                    // alternativ
+                    return false;
+                    // Sonst: mit Try and Catch Block möglich, noch nicht gelernt.
                     // throw new IllegalArgumentException("Antwort nicht möglich, eingegebene Zahl ist zu hoch");
                 }
             }
         }
-        //Zurückbringen
-        return correctAnswer;
+
+        //Prüfen, wieviele Antworten richtig sein müssen, damit die Frage insgesamt richtig ist.
+
+        int needsToBeCorrect = 0;
+        //for each LESEND über die Antwortmöglichkeiten
+        for (Choice choice :
+                choices) {
+            //Wenn die Antwort ok ist, dann wird needsToBeCorrect um 1 erhöht
+            if(choice.ok == true){
+                needsToBeCorrect++;
+            }
+        }
+
+        //Nun wird auch geschaut, ob alle Antworten auch richtig angegeben wurden
+        if(needsToBeCorrect == correctAnswers){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
 
     public void showCorrectAnswer(){
-        System.out.println("Richtige Antwort: ");
 
+        //Standard Ausgabe
+        System.out.println("Richtige Antwort(en): ");
+
+
+        //for each schleife LESEND über choice List
         for (Choice choice :
                 choices) {
+            //Ausgeben der richtigen Antworten
             if(choice.ok == true) {
                 System.out.println("(" + (choices.indexOf(choice) + 1) + ") " + choice.txt);
             }
