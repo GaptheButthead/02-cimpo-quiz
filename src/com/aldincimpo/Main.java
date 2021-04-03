@@ -97,7 +97,7 @@ public class Main {
         q.addWrongChoice("100 - 12 * 6 - 3 * 3");
         pool.add(q);
 
-
+        //Neue Fragen
         q = new Question("Was versteht man unter Cloud Computing?");
         q.addCorrectChoice("Bereitstellung von IT-Leistungen über das Internet");
         q.addWrongChoice("Computer die auf einer Wolke schweben");
